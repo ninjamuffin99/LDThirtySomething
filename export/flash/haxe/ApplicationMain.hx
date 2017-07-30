@@ -30,7 +30,23 @@ class ApplicationMain {
 		var types = [];
 		
 		
+		urls.push ("assets/data/BigLevel.oel");
+		types.push (lime.Assets.AssetType.TEXT);
+		
+		
 		urls.push ("assets/data/data-goes-here.txt");
+		types.push (lime.Assets.AssetType.TEXT);
+		
+		
+		urls.push ("assets/data/Level.oep");
+		types.push (lime.Assets.AssetType.TEXT);
+		
+		
+		urls.push ("assets/images/gameplayer.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/gameplayer.txt");
 		types.push (lime.Assets.AssetType.TEXT);
 		
 		
@@ -39,6 +55,22 @@ class ApplicationMain {
 		
 		
 		urls.push ("assets/images/phone.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/scanline.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/scanline1px.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/tiles.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/tiles_placeholder.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
@@ -207,7 +239,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "115",
+			build: "143",
 			company: "",
 			file: "LDThirtySomething",
 			fps: 60,
