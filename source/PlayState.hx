@@ -104,7 +104,7 @@ class PlayState extends FlxState
 		
 		newCam = new FlxCamera(Std.int(_screen.x), Std.int(_screen.y + TopBar.height), Std.int(_screen.width/1.5), Std.int((_screen.height/1.5) - TopBar.height), 1.5);
 		newCam.follow(_player);
-		newCam.setScrollBoundsRect(FlxG.width, 0, 1000, 1000);
+		newCam.setScrollBoundsRect(FlxG.width, 0, 2560, 1200);
 		FlxG.cameras.add(newCam);
 		newCam.height = 1;
 		FlxTween.tween(newCam, {width: newCam.width + 4, height:118, x:newCam.x - 1}, 1);
