@@ -54,6 +54,10 @@ class ApplicationMain {
 		types.push (lime.Assets.AssetType.TEXT);
 		
 		
+		urls.push ("assets/images/map_concept.0001.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
 		urls.push ("assets/images/phone.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
@@ -239,7 +243,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "143",
+			build: "160",
 			company: "",
 			file: "LDThirtySomething",
 			fps: 60,

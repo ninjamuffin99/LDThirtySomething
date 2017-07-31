@@ -92,7 +92,8 @@
         <RectColor A="255" R="0" G="64" B="128" />
       </ImageDefinition>
       <ValueDefinitions>
-        <ValueDefinition xsi:type="IntValueDefinition" Name="messageNum" Default="0" Min="0" Max="100" ShowSlider="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="message" Default="" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="date" Default="" MaxChars="-1" MultiLine="false" />
       </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>

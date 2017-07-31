@@ -13,7 +13,7 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 class Player extends FlxSprite 
 {
 	
-	public var speed:Float = 200;
+	public var speed:Float = 100;
 	
 	public function new(?X:Float=0, ?Y:Float=0) 
 	{

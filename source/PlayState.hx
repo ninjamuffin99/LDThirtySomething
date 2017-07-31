@@ -7,6 +7,7 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.addons.editors.ogmo.FlxOgmoLoader;
 import flixel.addons.tile.FlxTilemapExt;
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
@@ -29,6 +30,8 @@ class PlayState extends FlxState
 	private var _menu = [];
 	private var _menuArray:Array<String>;
 	private var _menuText:FlxText;
+	
+	private var _grpMessages:FlxTypedGroup<Message>;
 	
 	private var _battery:Float = 0.06;
 	private var _batteryText:FlxText;
@@ -61,6 +64,9 @@ class PlayState extends FlxState
 		//createPlayer();
 		_player = new Player(FlxG.width + 20, 50);
 		add(_player);
+		
+		_grpMessages = new FlxTypedGroup<Message>();
+		add(_grpMessages);
 		
 		_scanline = new FlxSprite(0, 0);
 		_scanline.loadGraphic("assets/images/scanline.png", false, 320, 240);
@@ -242,6 +248,11 @@ class PlayState extends FlxState
 		{
 			_player.x = x;
 			_player.y = y;
+		}
+		else if (entityName == "text")
+		{
+			_grpMessages.add(new Message(x, y, entityData.get("date"), entityData.get("message")));
+			
 		}
 		
 	}

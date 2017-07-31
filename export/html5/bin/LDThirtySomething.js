@@ -126,7 +126,7 @@ ApplicationMain.init = function() {
 	}
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "145", company : "", file : "LDThirtySomething", fps : 60, name : "LDThirtySomething", orientation : "", packageName : "com.example.myapp", version : "0.0.1", windows : [{ antialiasing : 0, background : 16777215, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 480, parameters : "{}", resizable : false, stencilBuffer : true, title : "LDThirtySomething", vsync : true, width : 260, x : null, y : null}]};
+	ApplicationMain.config = { build : "148", company : "", file : "LDThirtySomething", fps : 60, name : "LDThirtySomething", orientation : "", packageName : "com.example.myapp", version : "0.0.1", windows : [{ antialiasing : 0, background : 16777215, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 480, parameters : "{}", resizable : false, stencilBuffer : true, title : "LDThirtySomething", vsync : true, width : 260, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	var hasMain = false;
