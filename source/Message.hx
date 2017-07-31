@@ -22,10 +22,10 @@ class Message extends FlxSpriteGroup
 		super(X, Y);
 		
 		_graphic = new FlxSprite(0, 0);
-		_graphic.makeGraphic(16, 16);
+		_graphic.loadGraphic("assets/images/mail.0001.png", false, 16, 16);
 		add(_graphic);
 		
-		_date = new FlxText(0, 17, 0, date, 9);
+		_date = new FlxText(0, 12, 0, date, 9);
 		_date.color = FlxColor.BLACK;
 		add(_date);
 		
