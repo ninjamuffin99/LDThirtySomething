@@ -19,7 +19,7 @@ import openfl.display.BlendMode;
 
 class PlayState extends FlxState
 {
-	private var _player:Player;
+	public static var _player:Player;
 	private var _map:FlxOgmoLoader;
 	private var _mWalls:FlxTilemap;
 	private var newCam:FlxCamera;
@@ -46,6 +46,7 @@ class PlayState extends FlxState
 	
 	private var _scanline:FlxSprite;
 	private var _started:Bool;
+	private var _lighting:FlxSprite;
 	
 	override public function create():Void
 	{
@@ -84,6 +85,14 @@ class PlayState extends FlxState
 		
 		add(_phone);
 		
+		_lighting = new FlxSprite(0, 0);
+		_lighting.loadGraphic("assets/images/lighting.png", true, 260, 480);
+		_lighting.animation.add("on", [0, 1, 2, 2, 1], 7);
+		_lighting.animation.play("on");
+		_lighting.alpha = 0.9;
+		_lighting.blend = BlendMode.MULTIPLY;
+		add(_lighting);
+		
 		_started = false;
 		super.create();
 	}
@@ -107,7 +116,7 @@ class PlayState extends FlxState
 		newCam.setScrollBoundsRect(FlxG.width, 0, 2560, 1200);
 		FlxG.cameras.add(newCam);
 		newCam.height = 1;
-		FlxTween.tween(newCam, {width: newCam.width + 4, height:118, x:newCam.x - 1}, 1);
+		FlxTween.tween(newCam, {width: newCam.width + 4, height:119, x:newCam.x - 1}, 1);
 		
 		
 		FlxG.collide(_player, _phone);

@@ -15,6 +15,7 @@ class Message extends FlxSpriteGroup
 {
 	private var _graphic:FlxSprite;
 	private var _date:FlxText;
+	private var _text:FlxText;
 	
 	public function new(X:Int, Y:Int, date:String, text:String) 
 	{
@@ -24,13 +25,19 @@ class Message extends FlxSpriteGroup
 		_graphic.makeGraphic(16, 16);
 		add(_graphic);
 		
-		_date = new FlxText(0, 20, 0, date, 10);
+		_date = new FlxText(0, 17, 0, date, 9);
 		_date.color = FlxColor.BLACK;
 		add(_date);
+		
+		_text = new FlxText( -64, -16, 128, text, 8);
+		_text.color = FlxColor.BLACK;
+		add(_text);
+		
 	}
 	
 	override public function update(elapsed:Float):Void 
 	{
+		_text.visible = FlxG.overlap(PlayState._player, _graphic);
 		super.update(elapsed);
 	}
 	
