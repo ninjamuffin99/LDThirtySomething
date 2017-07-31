@@ -34,6 +34,8 @@ class PlayState extends FlxState
 	private var _menuText:FlxText;
 	
 	private var _grpMessages:FlxTypedGroup<Message>;
+	private var _warning:Warning;
+	private var _warned:Bool = false;
 	
 	private var _battery:Float = 0.06;
 	private var _batteryText:FlxText;
@@ -43,10 +45,13 @@ class PlayState extends FlxState
 	
 	private var date:Date = Date.now();
 	private var clock:FlxText;
+	private var _done:Bool = false;
+	private var _connect:FlxText;
 	
 	private var _scanline:FlxSprite;
 	private var _started:Bool;
 	private var _lighting:FlxSprite;
+	
 	
 	override public function create():Void
 	{
@@ -129,9 +134,14 @@ class PlayState extends FlxState
 		TopBar = new FlxSprite(0, _screen.y);
 		TopBar.makeGraphic(Std.int(_screen.width), Std.int(29 - _screen.y), FlxColor.BLACK);
 		TopBar.screenCenter(X);
+		add(TopBar);
 		
 		_batteryText = new FlxText(210, 15, 0, _battery * 100 + "%", 7);
 		_batteryBar = new FlxBar(230, 15, LEFT_TO_RIGHT, 14, 9, this, "_battery", 0, 0.5);
+		
+		var _signal:FlxText;
+		_signal = new FlxText(25, 15, 0, "...", 7);
+		add(_signal);
 		
 		_screenSelect = new FlxSprite(0, 30);
 		_screenSelect.makeGraphic(Std.int(_screen.width), Std.int(_screen.height * 0.20), FlxColor.BLUE);
@@ -148,7 +158,7 @@ class PlayState extends FlxState
 	
 	private function createClock():Void
 	{
-		add(TopBar);
+		
 		add(_batteryText);
 		add(_batteryBar);
 		add(clock);
@@ -186,6 +196,14 @@ class PlayState extends FlxState
 			_batteryTimer = FlxG.random.float(45, 110);
 		}
 		
+		if (_battery <= 0 && !_done)
+		{
+			_done = true;
+			endGame();
+		}
+		
+		if (FlxG.keys.justPressed.F)
+			_battery -= 0.01;
 		
 		controls();
 		
@@ -277,5 +295,22 @@ class PlayState extends FlxState
 			
 		}
 		
+	}
+	
+	private function endGame():Void
+	{
+		TopBar.visible = false;
+		_screen.visible = false;
+		_screenSelect.visible = false;
+		_batteryBar.visible = false;
+		_batteryText.visible = false;
+		clock.visible = false;
+		
+		newCam.visible = false;
+		_mWalls.visible = false;
+		_menuText.visible = false;
+		
+		_connect = new FlxText(_screen.x + 20, _screen.y + 30, 0, "CONNECT TO POWER", 10);
+		add(_connect);
 	}
 }

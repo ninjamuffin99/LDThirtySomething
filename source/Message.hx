@@ -31,6 +31,7 @@ class Message extends FlxSpriteGroup
 		
 		_text = new FlxText( -64, -16, 128, text, 8);
 		_text.color = FlxColor.BLACK;
+		_text.addFormat(new FlxTextFormat(0x000000, false, false, FlxColor.WHITE));
 		add(_text);
 		
 	}
