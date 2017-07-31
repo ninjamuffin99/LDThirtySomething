@@ -11,6 +11,8 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.ui.FlxBar;
 import flixel.util.FlxColor;
 import openfl.display.BlendMode;
@@ -43,6 +45,7 @@ class PlayState extends FlxState
 	private var clock:FlxText;
 	
 	private var _scanline:FlxSprite;
+	private var _started:Bool;
 	
 	override public function create():Void
 	{
@@ -80,6 +83,8 @@ class PlayState extends FlxState
 		add(_scanline);
 		
 		add(_phone);
+		
+		_started = false;
 		super.create();
 	}
 	
@@ -101,6 +106,9 @@ class PlayState extends FlxState
 		newCam.follow(_player);
 		newCam.setScrollBoundsRect(FlxG.width, 0, 1000, 1000);
 		FlxG.cameras.add(newCam);
+		newCam.height = 1;
+		FlxTween.tween(newCam, {width: newCam.width + 4, height:118, x:newCam.x - 1}, 1);
+		
 		
 		FlxG.collide(_player, _phone);
 	}
@@ -188,36 +196,41 @@ class PlayState extends FlxState
 		_up = FlxG.keys.justPressed.UP;
 		_down = FlxG.keys.justPressed.DOWN;
 		
-		if (FlxG.keys.justPressed.SPACE && _selectPosition == 2)
+		if (!_started)
 		{
-			createPlayer();
+			if (FlxG.keys.justPressed.SPACE && _selectPosition == 2)
+			{
+				FlxTween.tween(FlxG.camera, {zoom:1.05, y: 10});
+				_started = true;
+				_screenSelect.visible = false;
+				createPlayer();
+			}
+			
+			if (_up && _down)
+			{
+				_up = _down = false;
+			}
+			
+			if (_up)
+			{
+				FlxG.sound.play("assets/sounds/up.mp3");
+				_selectPosition -= 1;
+			}
+			if (_down)
+			{
+				FlxG.sound.play("assets/sounds/down.mp3");
+				_selectPosition += 1;
+			}
+			
+			if (_selectPosition < 0)
+			{
+				_selectPosition = 3;
+			}
+			if (_selectPosition > 3)
+			{
+				_selectPosition = 0;
+			}
 		}
-		
-		if (_up && _down)
-		{
-			_up = _down = false;
-		}
-		
-		if (_up)
-		{
-			FlxG.sound.play("assets/sounds/up.mp3");
-			_selectPosition -= 1;
-		}
-		if (_down)
-		{
-			FlxG.sound.play("assets/sounds/down.mp3");
-			_selectPosition += 1;
-		}
-		
-		if (_selectPosition < 0)
-		{
-			_selectPosition = 3;
-		}
-		if (_selectPosition > 3)
-		{
-			_selectPosition = 0;
-		}
-		
 		
 		_screenSelect.y = (_screenSelect.height * _selectPosition) + 30;
 		

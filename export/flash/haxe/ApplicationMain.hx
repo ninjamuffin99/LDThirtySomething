@@ -18,7 +18,7 @@ class ApplicationMain {
 		var app = new openfl.display.Application ();
 		app.create (config);
 		
-		var display = new flixel.system.FlxPreloader ();
+		var display = new CustomPreloader ();
 		
 		preloader = new openfl.display.Preloader (display);
 		app.setPreloader (preloader);
@@ -243,7 +243,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "160",
+			build: "188",
 			company: "",
 			file: "LDThirtySomething",
 			fps: 60,
@@ -255,7 +255,7 @@ class ApplicationMain {
 				
 				{
 					antialiasing: 0,
-					background: 16777215,
+					background: 0,
 					borderless: false,
 					depthBuffer: false,
 					display: 0,
@@ -285,7 +285,7 @@ class ApplicationMain {
 		
 		#if (js && html5)
 		#if (munit || utest)
-		openfl.Lib.embed (null, 260, 480, "FFFFFF");
+		openfl.Lib.embed (null, 260, 480, "000000");
 		#end
 		#else
 		create ();
