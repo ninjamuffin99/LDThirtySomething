@@ -54,7 +54,7 @@ class CustomPreloader extends FlxBasePreloader
 		addChild(text);
 		*/
 		#if (flash)
-			API.connect(root, "API", "ENCYRYPP");
+			API.connect(root, "API KEY", "ENC Key");
 			
 			if (API.isNewgrounds)
 			{

@@ -55,6 +55,16 @@ class PlayState extends FlxState
 	
 	override public function create():Void
 	{
+		/*
+		_done = FlxG.save.data._done;
+		if (FlxG.save.data._done == null)
+		{
+			_done = false;
+			FlxG.save.data._done = _done;
+		}
+		
+		FlxG.save.flush();
+		*/
 		FlxG.sound.playMusic("assets/music/757870_Denwa-wo-Kakete-.mp3");
 		FlxG.mouse.visible = false;
 		
@@ -99,6 +109,12 @@ class PlayState extends FlxState
 		add(_lighting);
 		
 		_started = false;
+		
+		if (_done)
+		{
+			endGame();
+		}
+		
 		super.create();
 	}
 	
@@ -168,10 +184,9 @@ class PlayState extends FlxState
 	{
 		_menuArray = 
 		[
-			"Placeholder", 
-			"Title", 
-			"BEGIN",
-			"Options"
+			"Lost", 
+			"Connection", 
+			"Start"
 		];
 		
 		
@@ -201,10 +216,10 @@ class PlayState extends FlxState
 			_done = true;
 			endGame();
 		}
-		
+		/*
 		if (FlxG.keys.justPressed.F)
 			_battery -= 0.01;
-		
+		*/
 		controls();
 		
 		updateText();
@@ -312,5 +327,8 @@ class PlayState extends FlxState
 		
 		_connect = new FlxText(_screen.x + 20, _screen.y + 30, 0, "CONNECT TO POWER", 10);
 		add(_connect);
+		
+		//FlxG.save.data._done = _done;
+		//FlxG.save.flush();
 	}
 }
